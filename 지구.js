@@ -32,40 +32,61 @@ controls.dampingFactor = 0.5; // 감속 강도 설정
 // Create a Sun
 const STexture = new THREE.TextureLoader().load('태양.png');
 const Sgeometry = new THREE.SphereGeometry(696, 60, 60);
-const Smaterial = new THREE.MeshStandardMaterial({ emissive: 0xffcc00 , map:STexture});
+const Smaterial = new THREE.MeshStandardMaterial({ color: 0xffcc00 , map:STexture});
 const Sun = new THREE.Mesh(Sgeometry, Smaterial);
 scene.add(Sun);
 
 const pointLight = new THREE.PointLight(0xffffff, 1, 100000000);
-pointLight.position.set(0, 1100, 0); // 태양 중심에 빛 배치
-pointLight.power = (70)
+pointLight.position.set(0, 1400, 0); // 태양 중심에 빛 배치
+pointLight.power = (50)
 pointLight.distance = 100000
 scene.add(pointLight);
 const pointLight1 = new THREE.PointLight(0xffffff, 1, 100000000);
-pointLight1.position.set(0, -1100, 0); // 태양 중심에 빛 배치
-pointLight1.power = (70)
+pointLight1.position.set(0, -1400, 0); // 태양 중심에 빛 배치
+pointLight1.power = (50)
 pointLight1.distance = 100000
 scene.add(pointLight1);
 const pointLight2 = new THREE.PointLight(0xffffff, 1, 100000000);
-pointLight2.position.set(1100, 0, 0); // 태양 중심에 빛 배치
-pointLight2.power = (70)
+pointLight2.position.set(1400, 0, 0); // 태양 중심에 빛 배치
+pointLight2.power = (50)
 pointLight2.distance = 2000
 scene.add(pointLight2);
 const pointLight3 = new THREE.PointLight(0xffffff, 1, 100000000);
-pointLight3.position.set(-1100, 0, 0); // 태양 중심에 빛 배치
-pointLight3.power = (70)
+pointLight3.position.set(-1400, 0, 0); // 태양 중심에 빛 배치
+pointLight3.power = (50)
 pointLight3.distance = 2000
 scene.add(pointLight3);
 const pointLight4 = new THREE.PointLight(0xffffff, 1, 100000000);
-pointLight4.position.set(0, 0, 1100); // 태양 중심에 빛 배치
-pointLight4.power = (70)
+pointLight4.position.set(0, 0, 1400); // 태양 중심에 빛 배치
+pointLight4.power = (50)
 pointLight4.distance = 2000
 scene.add(pointLight4);
 const pointLight5 = new THREE.PointLight(0xffffff, 1, 100000000);
-pointLight5.position.set(0, 0, -1100); // 태양 중심에 빛 배치
-pointLight5.power = (70)
+pointLight5.position.set(0, 0, -1400); // 태양 중심에 빛 배치
+pointLight5.power = (50)
 pointLight5.distance = 2000
 scene.add(pointLight5);
+
+const pointLight6 = new THREE.PointLight(0xffffff, 1, 100000000);
+pointLight6.position.set(-1400, -500, -1400); // 태양 중심에 빛 배치
+pointLight6.power = (50)
+pointLight6.distance = 2000
+scene.add(pointLight6);
+const pointLight7 = new THREE.PointLight(0xffffff, 1, 100000000);
+pointLight7.position.set(1400, 700, -1400); // 태양 중심에 빛 배치
+pointLight7.power = (50)
+pointLight7.distance = 2000
+scene.add(pointLight7);
+const pointLight8 = new THREE.PointLight(0xffffff, 1, 100000000);
+pointLight8.position.set(-1400, -300, 1400); // 태양 중심에 빛 배치
+pointLight8.power = (50)
+pointLight8.distance = 2000
+scene.add(pointLight8);
+const pointLight9 = new THREE.PointLight(0xffffff, 1, 100000000);
+pointLight9.position.set(1400, -300, 1400); // 태양 중심에 빛 배치
+pointLight9.power = (50)
+pointLight9.distance = 2000
+scene.add(pointLight9);
 
 // 행성 생성 함수 수정
 function createPlanet(size, color, distance, orbitSpeed) {
@@ -177,13 +198,13 @@ scene.add(dashedLine2);
 // 부채꼴 초기화 함수
 function createFanes() {
     const geometry1 = new THREE.CircleGeometry(600, 32, Math.PI / 2, -Math.PI); // 180도 부채꼴
-    const material1 = new THREE.MeshBasicMaterial({ color: 0xff0000, side: THREE.DoubleSide });
+    const material1 = new THREE.MeshBasicMaterial({ color: 0x0000ff, side: THREE.DoubleSide });
     circle1 = new THREE.Mesh(geometry1, material1);
     scene.add(circle1);
     circle1.rotation.x = -Math.PI / 2; // 수평으로 회전
 
     const geometry2 = new THREE.CircleGeometry(900, 32, Math.PI / 2, -Math.PI); // 180도 부채꼴
-    const material2 = new THREE.MeshBasicMaterial({ color: 0x0000ff, side: THREE.DoubleSide });
+    const material2 = new THREE.MeshBasicMaterial({ color: 0xff0000, side: THREE.DoubleSide });
     circle2 = new THREE.Mesh(geometry2, material2);
     scene.add(circle2);
     circle2.rotation.x = -Math.PI / 2; // 수평으로 회전
@@ -215,17 +236,17 @@ function updateFans() {
 
   // 부채꼴의 각도 업데이트
   if (angle1 < 0){
-    circle1.geometry = new THREE.RingGeometry(300, 600, 32, 32, Math.PI / 2, -angle1); // 부채꼴의 각도 업데이트
+    circle1.geometry = new THREE.RingGeometry(400, 550, 32, 32, Math.PI / 2, -angle1); // 부채꼴의 각도 업데이트
   }
   else if (angle1 >= 0){
-    circle1.geometry = new THREE.RingGeometry(300, 600, 32, 32, Math.PI / 2, 2*Math.PI-angle1); // 부채꼴의 각도 업데이트
+    circle1.geometry = new THREE.RingGeometry(400, 550, 32, 32, Math.PI / 2, 2*Math.PI-angle1); // 부채꼴의 각도 업데이트
   }
   
   if (angle2 < 0){
-    circle2.geometry = new THREE.RingGeometry(800, 1100, 32, 32, Math.PI / 2, -angle2); // 부채꼴의 각도 업데이트
+    circle2.geometry = new THREE.RingGeometry(900, 1100, 32, 32, Math.PI / 2, -angle2); // 부채꼴의 각도 업데이트
   }
   else if (angle2 >= 0){
-    circle2.geometry = new THREE.RingGeometry(800, 1100, 32, 32, Math.PI / 2, 2*Math.PI-angle2); // 부채꼴의 각도 업데이트
+    circle2.geometry = new THREE.RingGeometry(900, 1100, 32, 32, Math.PI / 2, 2*Math.PI-angle2); // 부채꼴의 각도 업데이트
   }
 }
 
@@ -235,6 +256,28 @@ circle = new THREE.Mesh(geometry3, material3);
 circle.geometry = new THREE.RingGeometry(2000, 3000, 32, 32, 0, Math.PI*2); 
 scene.add(circle)
 circle.rotation.x = Math.PI/2
+
+const geometry4 = new THREE.CircleGeometry(900, 32, 0, 2*Math.PI); // 180도 부채꼴
+const material4 = new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide});
+circle4 = new THREE.Mesh(geometry4, material4);
+circle4.geometry = new THREE.RingGeometry(230, 290, 32, 32, 0, Math.PI*2); 
+scene.add(circle4)
+circle4.rotation.x = Math.PI/2
+
+
+const loader = new THREE.FontLoader();
+loader.load("https://fonts.googleapis.com/css2?family=Crimson+Pro", function (font) {
+  const textGeometry = new THREE.TextGeometry('hello', {
+    font: font,
+    size: 10,
+    height: 100,
+    curveSegments: 10,
+    bevelEnabled: false
+    });
+const textMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+scene.add(textMesh);
+})
 
 // Animate the cube
 function animate() {
@@ -304,6 +347,9 @@ function animate() {
   To.getWorldPosition(ToWorldPosition);
   circle.position.x = ToWorldPosition.x
   circle.position.z = ToWorldPosition.z
+  circle4.position.x = MarsWorldPosition.x
+  circle4.position.z = MarsWorldPosition.z
+
 }
 createFanes();
 animate();
